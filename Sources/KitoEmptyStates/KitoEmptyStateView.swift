@@ -96,9 +96,15 @@ public struct KitoEmptyStateView: View {
         case .none:
             EmptyView()
         case .systemImage(let name):
-            Image(systemName: name)
-                .font(.system(size: 40))
-                .foregroundStyle(theme.colors.onBackground.opacity(0.35))
+            ZStack {
+                Circle()
+                    .fill(theme.colors.primary.opacity(0.12))
+                    .frame(width: 88, height: 88)
+                Image(systemName: name)
+                    .font(.system(size: 34))
+                    .foregroundStyle(theme.colors.primary.opacity(0.8))
+            }
+            .kitoGlow(theme.colors.primary, radius: 16, intensity: 0.18)
         case .image(let name):
             Image(name)
                 .resizable()
