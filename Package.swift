@@ -24,7 +24,8 @@ let package = Package(
             dependencies: [
                 .product(name: "KitoCore", package: "KitoCore"),
                 .product(name: "KitoLoaders", package: "KitoLoaders"),
-            ]
+            ],
+            resources: [.process("Resources")]
         ),
         .testTarget(name: "KitoEmptyStatesTests", dependencies: ["KitoEmptyStates"]),
     ]
