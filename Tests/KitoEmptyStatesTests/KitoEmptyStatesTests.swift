@@ -12,13 +12,52 @@ import XCTest
 final class KitoEmptyStatesTests: XCTestCase {
     func testNoResultsIncludesQueryInTitle() {
         let view = KitoEmptyStateView.noResults(query: "sneakers")
-        XCTAssertTrue(view.title.contains("sneakers"))
+        XCTAssertTrue(view.title?.contains("sneakers") == true)
     }
 
     func testNoConnectionHasRetryAction() {
         var retried = false
         let view = KitoEmptyStateView.noConnection { retried = true }
-        view.action?.handler()
+        view.actions.first?.handler()
         XCTAssertTrue(retried)
+    }
+
+    func testBackCompatSystemImageInitProducesSingleAction() {
+        var tapped = false
+        let view = KitoEmptyStateView(systemImage: "tray", title: "Empty", action: KitoEmptyStateAction(title: "Retry") { tapped = true })
+        XCTAssertEqual(view.actions.count, 1)
+        view.actions[0].handler()
+        XCTAssertTrue(tapped)
+    }
+
+    func testGeneralInitSupportsMultipleActionsAndOptionalTitle() {
+        let view = KitoEmptyStateView(
+            media: .systemImage("cart"),
+            message: "No title here, just a message.",
+            actions: [
+                KitoEmptyStateAction(title: "Keep shopping", role: .primary) {},
+                KitoEmptyStateAction(title: "Clear cart", role: .destructive) {},
+            ],
+            actionsAxis: .horizontal
+        )
+        XCTAssertNil(view.title)
+        XCTAssertEqual(view.actions.count, 2)
+        XCTAssertEqual(view.actionsAxis, .horizontal)
+    }
+
+    func testMediaSourceLoadsInMemoryDataDirectly() async {
+        let payload = Data("hello".utf8)
+        let loaded = await KitoMediaSource.data(payload).loadData()
+        XCTAssertEqual(loaded, payload)
+    }
+
+    func testMediaSourceLoadsLocalFileURL() async throws {
+        let payload = Data("file contents".utf8)
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try payload.write(to: url)
+        defer { try? FileManager.default.removeItem(at: url) }
+
+        let loaded = await KitoMediaSource.url(url).loadData()
+        XCTAssertEqual(loaded, payload)
     }
 }
