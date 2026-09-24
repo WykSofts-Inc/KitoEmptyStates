@@ -118,8 +118,8 @@ public struct KitoEmptyStateView: View {
 
     private var compact: some View {
         HStack(alignment: .center, spacing: theme.spacing.md) {
+            // Each media kind sizes itself; a fixed frame here would clip the illustration.
             mediaView(scale: 0.5)
-                .frame(width: max(mediaSize.width * 0.5, 64))
             VStack(alignment: .leading, spacing: theme.spacing.xs) {
                 texts(alignment: .leading)
                 if !actions.isEmpty {
