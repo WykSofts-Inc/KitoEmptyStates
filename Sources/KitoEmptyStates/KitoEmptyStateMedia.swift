@@ -40,6 +40,8 @@ public enum KitoEmptyStateMedia: Sendable, Equatable, Hashable {
     case none
     /// An SF Symbol, rendered at a large size (the original, simplest case).
     case systemImage(String)
+    /// An animated illustration drawn in SwiftUI, e.g. `.illustration(.inbox)`.
+    case illustration(KitoEmptyStateIllustration)
     /// A name from the host app's asset catalog.
     case image(String)
     /// A static image loaded from a local file or downloaded from the network.

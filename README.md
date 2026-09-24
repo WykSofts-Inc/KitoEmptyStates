@@ -7,7 +7,7 @@ loading/error/content logic collapses to one call.
 ## Install
 
 ```swift
-.package(url: "https://github.com/WykSofts-Inc/KitoEmptyStates.git", from: "1.0.0"),
+.package(url: "https://github.com/WykSofts-Inc/KitoEmptyStates.git", from: "1.1.0"),
 ```
 
 ## Samples
@@ -28,6 +28,35 @@ KitoEmptyStateView(
     message: "Items you add will show up here.",
     action: KitoEmptyStateAction(title: "Browse products") { router.push(.catalog) }
 )
+```
+
+**Animated illustrations** — drawn in SwiftUI, no assets:
+```swift
+KitoEmptyStateView(
+    media: .illustration(.inbox),
+    title: "Inbox zero",
+    message: "New messages will land here."
+)
+
+KitoEmptyStateView.emptyCart { router.push(.catalog) }
+KitoEmptyStateView.noNotifications()
+KitoEmptyStateView.illustrated(.offline.tinted(.indigo, .purple), title: "No signal")
+
+// Your own, from any SF Symbol
+let noTrips = KitoEmptyStateIllustration(name: "No trips", symbol: "airplane",
+                                         satellites: ["suitcase.fill", "map.fill"],
+                                         colors: [.teal, .blue], motion: .float)
+```
+Presets: `.inbox`, `.search`, `.offline`, `.cart`, `.notifications`, `.error`,
+`.success`, `.location`, `.photos`, `.favourites`, `.messages`, `.calendar`,
+`.wallet`, `.downloads`, `.locked`. `KitoEmptyStateIllustrationView` renders one on its own.
+
+**Layouts:**
+```swift
+KitoEmptyStateView(media: .illustration(.wallet), title: "No transactions", layout: .compact)   // beside the text, for cards
+KitoEmptyStateView(media: .systemImage("creditcard"), message: "No cards yet",
+                   actions: [KitoEmptyStateAction(title: "Add") { }], layout: .inline)          // one dashed row
+KitoEmptyStateView(media: .illustration(.success), title: "You're all set", layout: .fullScreen) // fills the screen
 ```
 
 **Whole-screen state handling in one call:**
