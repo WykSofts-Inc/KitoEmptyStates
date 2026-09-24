@@ -1,5 +1,7 @@
 # KitoEmptyStates
 
+**[Documentation](https://wyksofts-inc.github.io/KitoEmptyStates/documentation/kitoemptystates/)**
+
 Themed empty, no-results, offline, and error views — plus `KitoStateView`,
 which switches over `KitoLoadState<Value>` (from KitoCore) so a whole screen's
 loading/error/content logic collapses to one call.
