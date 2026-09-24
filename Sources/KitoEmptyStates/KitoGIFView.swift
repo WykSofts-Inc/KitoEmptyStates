@@ -10,14 +10,14 @@ import SwiftUI
 import ImageIO
 import UIKit
 
-/// Plays an animated GIF from a `KitoMediaSource`. Decodes every frame (and
+/// Plays an animated GIF from a `KitoEmptyStateSource`. Decodes every frame (and
 /// its own per-frame delay) with ImageIO, so playback speed matches the
 /// source file instead of a guessed constant frame rate.
 public struct KitoGIFView: View {
-    let source: KitoMediaSource
+    let source: KitoEmptyStateSource
     @State private var data: Data?
 
-    public init(source: KitoMediaSource) {
+    public init(source: KitoEmptyStateSource) {
         self.source = source
     }
 

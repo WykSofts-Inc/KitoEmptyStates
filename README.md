@@ -7,7 +7,7 @@ loading/error/content logic collapses to one call.
 ## Install
 
 ```swift
-.package(url: "https://github.com/WykSofts-Inc/KitoEmptyStates.git", from: "1.1.0"),
+.package(url: "https://github.com/WykSofts-Inc/KitoEmptyStates.git", from: "1.2.0"),
 ```
 
 ## Samples
@@ -72,6 +72,13 @@ struct TransactionsScreen: View {
     }
 }
 ```
+
+## Migrating from 1.1
+
+1.2.0 renames `KitoMediaSource` to `KitoEmptyStateSource`, so KitoEmptyStates can be imported in
+the same file as KitoMediaPicker (which has its own `KitoMediaSource`) without "ambiguous" errors.
+Its two cases (`.data` and `.url`) are unchanged, so most code only needs the type name
+replaced wherever you spelled it out — `.gif(.url(url))` and friends keep compiling as they are.
 
 ## License
 

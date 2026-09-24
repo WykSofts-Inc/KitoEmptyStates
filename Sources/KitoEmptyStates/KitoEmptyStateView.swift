@@ -349,7 +349,7 @@ private struct KitoEmptyStatePressStyle: ButtonStyle {
 }
 
 private struct KitoRemoteImageView: View {
-    let source: KitoMediaSource
+    let source: KitoEmptyStateSource
     @State private var image: UIImage?
 
     var body: some View {
