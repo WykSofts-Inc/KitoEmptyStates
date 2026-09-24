@@ -9,15 +9,15 @@
 import SwiftUI
 import WebKit
 
-/// Renders raw SVG markup from a `KitoMediaSource`. WebKit parses SVG
+/// Renders raw SVG markup from a `KitoEmptyStateSource`. WebKit parses SVG
 /// natively, so this needs no vector-graphics library — just a transparent
 /// `WKWebView` with JavaScript disabled (the markup is trusted illustration
 /// content, not a page that needs to run scripts).
 public struct KitoSVGView: View {
-    let source: KitoMediaSource
+    let source: KitoEmptyStateSource
     @State private var data: Data?
 
-    public init(source: KitoMediaSource) {
+    public init(source: KitoEmptyStateSource) {
         self.source = source
     }
 

@@ -9,18 +9,18 @@
 import SwiftUI
 import WebKit
 
-/// Plays a Lottie JSON animation from a `KitoMediaSource`, using a bundled
+/// Plays a Lottie JSON animation from a `KitoEmptyStateSource`, using a bundled
 /// offline copy of lottie-web (Resources/lottie.min.js) inside a transparent
 /// `WKWebView`. This is deliberate: it gives KitoEmptyStates real Lottie
 /// support without taking a hard SPM/CocoaPods dependency on a Lottie
 /// runtime, and without any network access at play time — the player script
 /// ships inside the package, inlined straight into the HTML shell.
 public struct KitoLottieView: View {
-    let source: KitoMediaSource
+    let source: KitoEmptyStateSource
     let loop: Bool
     @State private var json: String?
 
-    public init(source: KitoMediaSource, loop: Bool = true) {
+    public init(source: KitoEmptyStateSource, loop: Bool = true) {
         self.source = source
         self.loop = loop
     }

@@ -47,7 +47,7 @@ final class KitoEmptyStatesTests: XCTestCase {
 
     func testMediaSourceLoadsInMemoryDataDirectly() async {
         let payload = Data("hello".utf8)
-        let loaded = await KitoMediaSource.data(payload).loadData()
+        let loaded = await KitoEmptyStateSource.data(payload).loadData()
         XCTAssertEqual(loaded, payload)
     }
 
@@ -57,7 +57,7 @@ final class KitoEmptyStatesTests: XCTestCase {
         try payload.write(to: url)
         defer { try? FileManager.default.removeItem(at: url) }
 
-        let loaded = await KitoMediaSource.url(url).loadData()
+        let loaded = await KitoEmptyStateSource.url(url).loadData()
         XCTAssertEqual(loaded, payload)
     }
 }

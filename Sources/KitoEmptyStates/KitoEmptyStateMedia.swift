@@ -12,7 +12,7 @@ import Foundation
 /// URL. `KitoGIFView`/`KitoSVGView`/`KitoLottieView` all resolve this the
 /// same way, so a caller can supply a bundled asset or a downloaded one
 /// through the same enum.
-public enum KitoMediaSource: Sendable, Equatable, Hashable {
+public enum KitoEmptyStateSource: Sendable, Equatable, Hashable {
     case data(Data)
     case url(URL)
 
@@ -45,17 +45,17 @@ public enum KitoEmptyStateMedia: Sendable, Equatable, Hashable {
     /// A name from the host app's asset catalog.
     case image(String)
     /// A static image loaded from a local file or downloaded from the network.
-    case remoteImage(KitoMediaSource)
+    case remoteImage(KitoEmptyStateSource)
     /// An animated GIF, decoded frame-by-frame with ImageIO (no external
     /// dependency) and looped.
-    case gif(KitoMediaSource)
+    case gif(KitoEmptyStateSource)
     /// Raw SVG markup, rendered by a transparent `WKWebView` (WebKit parses
     /// SVG natively — no vector library needed).
-    case svg(KitoMediaSource)
+    case svg(KitoEmptyStateSource)
     /// A Lottie JSON animation, played by a bundled offline copy of
     /// lottie-web inside a transparent `WKWebView` — no CocoaPods/SPM
     /// dependency on a Lottie runtime, and no network access at play time.
-    case lottie(KitoMediaSource, loop: Bool = true)
+    case lottie(KitoEmptyStateSource, loop: Bool = true)
     /// A short video, looped and muted by default — a silent looping clip
     /// reads as an illustration, not a video player.
     case video(URL, loop: Bool = true, muted: Bool = true)
